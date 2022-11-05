@@ -43,7 +43,7 @@ public class ClassDiagramCreator extends GraphicsProgram {
     MouseAdapter newProjectMA = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            newProject("My New Project");
+            newProject("Dialog");
         }
 
         @Override
@@ -70,7 +70,6 @@ public class ClassDiagramCreator extends GraphicsProgram {
         goToPage(HOME_PAGE);
 
         lookForProjects();
-        newProject("My New Project");
     }
 
     private void goToPage(int index){
@@ -121,11 +120,20 @@ public class ClassDiagramCreator extends GraphicsProgram {
     }
 
     private void newProject(String projectName){
+        File newProject = new File(FileMaster.DOCUMENTS_FOLDER+"/Class Diagram Creator/ProjectData/" + projectName);
+
+        // check for directory exist
         if(!FileMaster.fileExists(FileMaster.DOCUMENTS_FOLDER+"/Class Diagram Creator/ProjectData/")){
             FileMaster.createDirectory(FileMaster.DOCUMENTS_FOLDER,"/Class Diagram Creator/ProjectData/");
         }
 
-        FileMaster.createFile(FileMaster.DOCUMENTS_FOLDER+"/Class Diagram Creator/ProjectData/" + projectName);
+        // check for name taken
+        if(newProject.exists()){
+            // Tell the user to pick a different name
+        } else {
+            // create the new project
+            FileMaster.createFile(FileMaster.DOCUMENTS_FOLDER + "/Class Diagram Creator/ProjectData/" + projectName);
+        }
     }
 
     private void setupWindow(){

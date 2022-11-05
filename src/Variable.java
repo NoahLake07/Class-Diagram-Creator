@@ -1,22 +1,22 @@
 public class Variable {
 
-    AccessModifier accessModifier;
-    Type type;
+    int accessModifier;
+    int type;
     String varName;
 
-    public Variable(AccessModifier aM,Type t, String s){
+    public Variable(int aM, int t, String s){
         accessModifier = aM;
         type = t;
         varName = s;
     }
 
-    public void setVariable(AccessModifier aM,Type t, String s){
+    public void setVariable(int aM, int t, String s){
         accessModifier = aM;
         type = t;
         varName = s;
     }
 
-    public Type getType(){
+    public int getType(){
         return type;
     }
 
@@ -24,11 +24,11 @@ public class Variable {
         return varName;
     }
 
-    public AccessModifier getAccessModifier(){
+    public int getAccessModifier(){
         return accessModifier;
     }
 
-    public void setAccessModifier(AccessModifier aM){
+    public void setAccessModifier(int aM){
         accessModifier = aM;
     }
 

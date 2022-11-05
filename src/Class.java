@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Class {
 
+
+
     ArrayList<Method> methods = new ArrayList<>(0);
     ArrayList<Variable> variables = new ArrayList<>(0);
     String className = "CLASS NAME";
@@ -17,7 +19,7 @@ public class Class {
     }
 
     // variable controllers
-    public void createVariable(AccessModifier accessModifier, Type type, String varName){
+    public void createVariable(int accessModifier, int type, String varName){
         Variable var = new Variable(accessModifier,type,varName);
         variables.add(var);
     }
