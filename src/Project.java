@@ -56,12 +56,13 @@ public class Project {
                         // repeat until the end of class data
                         while (!(currentLineData.startsWith("\\"))) {
 
+                            String temp = fileData.get(currentLine);
                             // filter data
                             switch (currentLineData) {
 
                                 case "‹":
                                     // variable indication
-                                    String temp = fileData.get(currentLine);
+                                    temp = fileData.get(currentLine);
                                     temp.substring(1);
                                     String[] tempVarData = convertStringToArray(temp, '»');
 
@@ -98,6 +99,45 @@ public class Project {
 
                                 case "›":
                                     // method indication
+                                    temp.substring(1);
+                                    String[] tempMetData = convertStringToArray(temp, '»');
+
+                                    /**
+                                     * tempMetData:
+                                     * ==============
+                                     * Name
+                                     * Return Type
+                                     * Access Modifier
+                                     **/
+
+                                    int mAM, returnType;
+                                    // assign literal type value
+                                    switch (tempMetData[1]){
+                                        case "byte" -> returnType = Type.BYTE;
+                                        case "int" -> returnType = Type.INT;
+                                        case "short" -> returnType = Type.SHORT;
+                                        case "long" -> returnType = Type.LONG;
+                                        case "float" -> returnType = Type.FLOAT;
+                                        case "double" -> returnType = Type.DOUBLE;
+                                        default -> {
+                                            returnType = 0;
+                                            System.out.println("METHOD RETURN TYPE INVALID");
+                                        }
+                                    }
+
+                                    // assign literal access mod value
+                                    switch (tempMetData[0]){
+                                        case "public" -> mAM = AccessModifier.PUBLIC;
+                                        case "private" -> mAM = AccessModifier.PRIVATE;
+                                        case "protected" -> mAM = AccessModifier.PROTECTED;
+                                        default -> {
+                                            mAM = AccessModifier.PRIVATE;
+                                            System.out.println("METHOD ACCESS MODIFIER INVALID");
+                                        }
+                                    }
+
+                                    // add the new variable to classes list
+                                    classes.get(currentClass).createVariable(mAM,returnType,tempMetData[2]);
 
                                     break;
 
